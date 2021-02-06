@@ -43,14 +43,7 @@ type ParamsFromPath<
   ? Record<Param, PathValue>
   : {}
 
-type Id<T> = { [K in keyof T]: T[K] }
-
 type Method = 'GET' | 'POST'
-
-type RequestBuilder<Path extends string, Body> = (
-  params: ParamsFromPath<Path>,
-  body: Body
-) => GenericRequest
 
 function interpolate(
   urlTemplate: string,
@@ -66,18 +59,12 @@ function interpolate(
   )
 }
 
-type Abc = Id<ParamsFromPath<`/sites/:siteId`>>
-
 type PathValue = string | number
 
 export const createRequest = <ReqBody>() => <Path extends string>(
   method: Method,
   urlTemplate: Path
 ) => {
-  // urlTemplate: Path,
-  // urlParams: ParamsFromPath<Path>,
-  // reqBody: Body
-  // ): GenericRequest {
   return (urlParams: ParamsFromPath<Path>, reqBody: ReqBody) => {
     const requestInit: RequestInit = {
       headers: {
@@ -92,12 +79,6 @@ export const createRequest = <ReqBody>() => <Path extends string>(
     }
   }
 }
-
-interface SampleBody {
-  foo: string
-}
-
-const resC = t.type({ bar: t.number })
 
 type RequestCodec<Path extends string, Body, Res> = (
   urlParams: ParamsFromPath<Path>,
@@ -165,6 +146,3 @@ export const requestCodecFactory = (requestAdapter: RequestAdapter) => <
   }
   return requestCodec
 }
-
-const siteRequestCreator = createRequest<SampleBody>()('GET', '/sites/:siteId')
-const sampleGenericRequest = siteRequestCreator({ siteId: 5 }, { foo: 'bar' })
