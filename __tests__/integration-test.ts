@@ -16,7 +16,7 @@ describe('request-builder', () => {
 
   afterAll(async () => await closeCallback())
 
-  describe('requestCodeFactory', () => {
+  describe('requestCodecFactory', () => {
     describe('with fetch adapter', () => {
       it('should be possible to create and perform POST request', async () => {
         // Set up adapter using `fetch` and accessing localhost
