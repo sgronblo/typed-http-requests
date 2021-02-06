@@ -37,9 +37,9 @@ type GenericResponse = Ok | Failure
 
 type ParamsFromPath<
   Path extends string
-> = Path extends `${infer Prefix}/:${infer Param}/${infer Rest}`
+> = Path extends `${infer _Prefix}/:${infer Param}/${infer Rest}`
   ? Record<Param, PathValue> & ParamsFromPath<`/${Rest}`>
-  : Path extends `${infer Prefix}/:${infer Param}`
+  : Path extends `${infer _Prefix}/:${infer Param}`
   ? Record<Param, PathValue>
   : {}
 
