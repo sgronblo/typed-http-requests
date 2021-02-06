@@ -2,9 +2,10 @@
   "name": "typed-http-requests",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
+    "build": "tsc",
     "test-watch": "jest --watch",
     "test-server": "ts-node test-server.ts",
     "test-main": "ts-node main.ts"
@@ -12,6 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
